@@ -47,6 +47,27 @@ export type Product = {
   isBestseller: boolean;
 };
 
+export type Nutrient = {
+  name: string;
+  amount: string;
+  /** Share of the EU reference intake, when one exists. */
+  nrv?: string;
+};
+
+export type ProductDetails = {
+  description: string[];
+  benefits: string[];
+  /** Per daily dose. */
+  composition: Nutrient[];
+  dose: string;
+  usage: string;
+  ingredients: string;
+  /** Days one pack lasts at the recommended dose. */
+  servings: number;
+};
+
+export type ProductWithDetails = Product & { details: ProductDetails };
+
 export type Review = {
   id: string;
   author: string;

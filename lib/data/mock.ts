@@ -295,7 +295,7 @@ export const reviews: Review[] = [
     rating: 5,
     date: "2026-09-17",
     productName: "Vitamin D3 + K2",
-    text: "Kapky nemají žádnou pachuť, stačí jedna denně ke snídani. Lahvička vydrží skoro půl roku.",
+    text: "Kapky nemají žádnou pachuť, dávám si je ke snídani do jogurtu. Lahvička vydrží skoro půl roku.",
     verified: true,
   },
   {

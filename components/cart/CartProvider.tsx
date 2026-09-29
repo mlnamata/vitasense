@@ -18,9 +18,10 @@ type CartContextValue = {
   isOpen: boolean;
   open: () => void;
   close: () => void;
-  add: (product: Product) => void;
+  add: (product: Product, quantity?: number) => void;
   setQuantity: (productId: string, quantity: number) => void;
   remove: (productId: string) => void;
+  clear: () => void;
 };
 
 const CartContext = createContext<CartContextValue | null>(null);
@@ -38,7 +39,7 @@ export default function CartProvider({ children }: { children: React.ReactNode }
   const open = useCallback(() => setIsOpen(true), []);
   const close = useCallback(() => setIsOpen(false), []);
 
-  const add = useCallback((product: Product) => {
+  const add = useCallback((product: Product, quantity = 1) => {
     const current = cartStore.getSnapshot();
     const existing = current.find((line) => line.product.id === product.id);
 
@@ -46,10 +47,10 @@ export default function CartProvider({ children }: { children: React.ReactNode }
       existing
         ? current.map((line) =>
             line === existing
-              ? { ...line, quantity: Math.min(line.quantity + 1, MAX_QUANTITY) }
+              ? { ...line, quantity: Math.min(line.quantity + quantity, MAX_QUANTITY) }
               : line
           )
-        : [...current, { product, quantity: 1 }]
+        : [...current, { product, quantity: Math.min(quantity, MAX_QUANTITY) }]
     );
   }, []);
 
@@ -58,6 +59,8 @@ export default function CartProvider({ children }: { children: React.ReactNode }
       cartStore.getSnapshot().filter((line) => line.product.id !== productId)
     );
   }, []);
+
+  const clear = useCallback(() => cartStore.write([]), []);
 
   const setQuantity = useCallback(
     (productId: string, quantity: number) => {
@@ -83,8 +86,8 @@ export default function CartProvider({ children }: { children: React.ReactNode }
       count += line.quantity;
       subtotal += line.quantity * line.product.priceCzk;
     }
-    return { lines, count, subtotal, isOpen, open, close, add, setQuantity, remove };
-  }, [lines, isOpen, open, close, add, setQuantity, remove]);
+    return { lines, count, subtotal, isOpen, open, close, add, setQuantity, remove, clear };
+  }, [lines, isOpen, open, close, add, setQuantity, remove, clear]);
 
   return <CartContext value={value}>{children}</CartContext>;
 }

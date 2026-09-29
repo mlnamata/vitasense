@@ -14,6 +14,11 @@ export const FREE_SHIPPING_CZK = 1500;
 
 export const SHOP_PATH = "/obchod";
 
+export const productPath = (slug: string) => `/produkty/${slug}`;
+
+/** Subscription discount, used on product pages and /predplatne. */
+export const SUBSCRIPTION_DISCOUNT = 0.15;
+
 /** Landing-page sections, in page order. Ids double as anchors. */
 export const SECTIONS = {
   home: "uvod",
@@ -206,6 +211,34 @@ export const SHOP = {
   subtitle:
     "Všechny doplňky VitaSense na jednom místě. Vyberte si podle cíle, nebo projděte celou nabídku.",
   all: "Vše",
+} as const;
+
+export const PRODUCT_PAGE = {
+  addToCart: "Přidat do košíku",
+  added: "Přidáno do košíku",
+  viewCart: "Zobrazit košík",
+  perDay: "na den",
+  lasts: "Vystačí na",
+  subscription: "V předplatném",
+  subscriptionLink: "Jak funguje předplatné",
+  description: "O produktu",
+  benefits: "Proč ho máme rádi",
+  composition: "Složení v denní dávce",
+  compositionHeaders: ["Látka", "Množství", "% RV*"],
+  nrvNote: "* RV = referenční hodnota příjmu pro dospělé",
+  usage: "Dávkování",
+  ingredients: "Seznam složek",
+  warnings: "Upozornění",
+  warningText:
+    "Nepřekračujte doporučenou denní dávku. Doplněk stravy není náhradou pestré a vyvážené stravy a zdravého životního stylu. Uchovávejte mimo dosah dětí, v suchu a při teplotě do 25 °C.",
+  reviews: "Recenze",
+  noReviews: "Tento produkt zatím nikdo nehodnotil. Budete první?",
+  related: "Mohlo by se vám hodit",
+  perks: [
+    { icon: "truck", text: "Doprava zdarma od 1 500 Kč" },
+    { icon: "package", text: "Expedice do 24 hodin" },
+    { icon: "return", text: "30 dní na vrácení" },
+  ],
 } as const;
 
 export const NEWSLETTER = {

@@ -1,8 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Star } from "lucide-react";
 import AddToCartButton from "@/components/product/AddToCartButton";
 import Packshot from "@/components/product/Packshot";
 import { cn } from "@/lib/cn";
+import { productPath } from "@/lib/content";
 import { formatPrice, formatRating, plural } from "@/lib/format";
 import type { Product } from "@/lib/types";
 
@@ -97,7 +99,13 @@ export default function ProductCard({
         </div>
 
         <h3 className="mt-2 text-lg font-bold leading-snug tracking-[-0.02em] text-slate-900 @max-3xs:text-[15px]">
-          {product.name}
+          {/* Stretched link: the whole card opens the product; the cart button sits above it. */}
+          <Link
+            href={productPath(product.slug)}
+            className="after:absolute after:inset-0 after:rounded-2xl after:content-['']"
+          >
+            {product.name}
+          </Link>
         </h3>
         <p className="mt-1 line-clamp-2 text-sm leading-snug text-slate-500 @max-3xs:text-[13px]">
           {product.tagline}
@@ -123,7 +131,7 @@ export default function ProductCard({
             </p>
             <p className="text-xs text-slate-500">{product.unit}</p>
           </div>
-          <AddToCartButton product={product} className="@max-3xs:size-11" />
+          <AddToCartButton product={product} className="relative z-10 @max-3xs:size-11" />
         </div>
       </div>
     </article>
