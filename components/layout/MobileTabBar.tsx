@@ -5,11 +5,11 @@ import { usePathname } from "next/navigation";
 import { House, Smartphone, Sprout, Store, UserRound } from "lucide-react";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { cn } from "@/lib/cn";
-import { SECTIONS } from "@/lib/content";
+import { SECTIONS, SHOP_PATH } from "@/lib/content";
 
 const TABS = [
   { label: "Domů", href: `/#${SECTIONS.home}`, section: SECTIONS.home, icon: House },
-  { label: "Obchod", href: `/#${SECTIONS.shop}`, section: SECTIONS.shop, icon: Store },
+  { label: "Obchod", href: SHOP_PATH, section: null, icon: Store },
   { label: "Vize", href: `/#${SECTIONS.vision}`, section: SECTIONS.vision, icon: Sprout },
   { label: "Ekosystém", href: `/#${SECTIONS.ecosystem}`, section: SECTIONS.ecosystem, icon: Smartphone },
   { label: "Účet", href: "/prihlaseni", section: null, icon: UserRound },
@@ -32,7 +32,7 @@ export default function MobileTabBar() {
         {TABS.map(({ label, href, section, icon: Icon }) => {
           const isActive = section
             ? onHome && (active ?? SECTIONS.home) === section
-            : pathname === href;
+            : pathname.startsWith(href);
 
           return (
             <li key={label} className="flex">

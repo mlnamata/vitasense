@@ -30,3 +30,22 @@ export function plural(
   const word = rule === "one" ? forms.one : rule === "few" ? forms.few : forms.other;
   return `${count} ${word}`;
 }
+
+const integer = new Intl.NumberFormat("cs-CZ");
+
+/** 2814 → „2 814" */
+export function formatCount(value: number) {
+  return integer.format(value);
+}
+
+const date = new Intl.DateTimeFormat("cs-CZ", {
+  day: "numeric",
+  month: "numeric",
+  year: "numeric",
+  timeZone: "UTC",
+});
+
+/** "2026-09-21" → „21. 9. 2026" */
+export function formatDate(iso: string) {
+  return date.format(new Date(iso));
+}

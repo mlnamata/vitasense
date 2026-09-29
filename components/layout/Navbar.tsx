@@ -11,7 +11,7 @@ import { useScrolled } from "@/hooks/useScrolled";
 import { cn } from "@/lib/cn";
 import { NAV_LINKS } from "@/lib/content";
 
-const SECTION_IDS = NAV_LINKS.map((link) => link.section);
+const SECTION_IDS = NAV_LINKS.flatMap((link) => (link.section ? [link.section] : []));
 
 const iconButton =
   "relative inline-flex size-11 items-center justify-center rounded-full text-slate-700 transition duration-300 ease-soft hover:bg-white hover:text-slate-900 active:scale-95";
@@ -37,12 +37,14 @@ export default function Navbar() {
         <nav aria-label="Hlavní navigace" className="hidden md:block">
           <ul className="flex items-center gap-1">
             {NAV_LINKS.map((link) => {
-              const isActive = active === link.section;
+              const isActive = link.section
+                ? active === link.section
+                : pathname.startsWith(link.href);
               return (
-                <li key={link.section}>
+                <li key={link.label}>
                   <Link
-                    href={`/#${link.section}`}
-                    aria-current={isActive ? "location" : undefined}
+                    href={link.href}
+                    aria-current={isActive ? (link.section ? "location" : "page") : undefined}
                     className={cn(
                       "relative inline-flex h-11 items-center rounded-full px-4 text-[15px] font-medium transition-colors duration-300",
                       isActive

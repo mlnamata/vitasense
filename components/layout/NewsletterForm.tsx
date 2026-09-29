@@ -11,19 +11,30 @@ import type { FormState } from "@/lib/types";
 
 const initialState: FormState = { status: "idle", message: "" };
 
-export default function NewsletterForm() {
+export default function NewsletterForm({ tone = "light" }: { tone?: "light" | "dark" }) {
+  const dark = tone === "dark";
   const [state, formAction, pending] = useActionState(subscribeToNewsletter, initialState);
 
   if (state.status === "success") {
     return (
       <div
         role="status"
-        className="flex items-start gap-4 rounded-2xl bg-sage-50 p-5 ring-1 ring-inset ring-sage-100"
+        className={cn(
+          "flex items-start gap-4 rounded-2xl p-5 ring-1 ring-inset",
+          dark ? "bg-white/[0.06] ring-white/10" : "bg-sage-50 ring-sage-100"
+        )}
       >
-        <CircleCheck className="mt-0.5 size-6 shrink-0 text-sage-600" aria-hidden="true" />
+        <CircleCheck
+          className={cn("mt-0.5 size-6 shrink-0", dark ? "text-sage-300" : "text-sage-600")}
+          aria-hidden="true"
+        />
         <div>
-          <p className="font-bold text-slate-900">Hotovo, jste na seznamu.</p>
-          <p className="mt-1 text-sm text-slate-600">{state.message}</p>
+          <p className={cn("font-bold", dark ? "text-white" : "text-slate-900")}>
+            Hotovo, jste na seznamu.
+          </p>
+          <p className={cn("mt-1 text-sm", dark ? "text-slate-300" : "text-slate-600")}>
+            {state.message}
+          </p>
         </div>
       </div>
     );
@@ -40,6 +51,7 @@ export default function NewsletterForm() {
           defaultValue={state.values?.email}
           invalid={hasError}
           describedBy="newsletter-hint"
+          tone={tone}
           className="sm:flex-1"
         />
         <button
@@ -56,7 +68,11 @@ export default function NewsletterForm() {
         aria-live="polite"
         className={cn(
           "mt-3 text-sm leading-relaxed",
-          hasError ? "font-medium text-red-700" : "text-slate-500"
+          hasError
+            ? cn("font-medium", dark ? "text-red-300" : "text-red-700")
+            : dark
+              ? "text-slate-400"
+              : "text-slate-500"
         )}
       >
         {hasError ? state.message : NEWSLETTER.consent}

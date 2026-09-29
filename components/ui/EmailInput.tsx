@@ -7,6 +7,7 @@ type Props = {
   defaultValue?: string;
   invalid?: boolean;
   describedBy?: string;
+  tone?: "light" | "dark";
   className?: string;
 };
 
@@ -18,6 +19,7 @@ export default function EmailInput({
   defaultValue,
   invalid = false,
   describedBy,
+  tone = "light",
   className,
 }: Props) {
   return (
@@ -39,7 +41,12 @@ export default function EmailInput({
         defaultValue={defaultValue}
         aria-invalid={invalid || undefined}
         aria-describedby={describedBy}
-        className="h-14 w-full rounded-2xl bg-cream px-5 text-base text-slate-900 ring-1 ring-inset ring-slate-900/10 transition duration-300 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-sage-600 aria-invalid:ring-red-400"
+        className={cn(
+          "h-14 w-full rounded-2xl px-5 text-base ring-1 ring-inset transition duration-300 focus:outline-none focus:ring-2",
+          tone === "dark"
+            ? "bg-white/[0.06] text-white ring-white/15 placeholder:text-slate-500 focus:bg-white/10 focus:ring-sage-400 aria-invalid:ring-red-300"
+            : "bg-cream text-slate-900 ring-slate-900/10 placeholder:text-slate-400 focus:bg-white focus:ring-sage-600 aria-invalid:ring-red-400"
+        )}
       />
     </div>
   );

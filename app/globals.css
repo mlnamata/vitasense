@@ -20,7 +20,15 @@
   --color-sage-800: #384935;
   --color-sage-900: #2e3c2b;
 
-  /* Deep indigo for the ecosystem block. */
+  /* Warm clay — the one saturated accent, for promos and sale prices.
+     600 carries white text at 5.5:1. */
+  --color-clay-50: #fbf3ef;
+  --color-clay-100: #f5e3da;
+  --color-clay-500: #b5654f;
+  --color-clay-600: #9c5240;
+  --color-clay-700: #7f4334;
+
+  /* Deep indigo for the ecosystem block and footer. */
   --color-ink-700: #2e3352;
   --color-ink-800: #22263f;
   --color-ink-900: #1a1d33;
@@ -36,6 +44,7 @@
   --animate-float: float 7s ease-in-out infinite;
   --animate-float-slow: float 9s ease-in-out -3s infinite;
   --animate-bump: bump 0.45s var(--ease-soft);
+  --animate-marquee: marquee 40s linear infinite;
 
   @keyframes blob {
     0%,
@@ -57,6 +66,15 @@
     }
     50% {
       transform: translateY(-10px);
+    }
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
     }
   }
 

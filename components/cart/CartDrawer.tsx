@@ -7,7 +7,7 @@ import { useCart } from "@/components/cart/CartProvider";
 import Packshot from "@/components/product/Packshot";
 import { buttonClass } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
-import { FREE_SHIPPING_CZK, SECTIONS } from "@/lib/content";
+import { FREE_SHIPPING_CZK, SHOP_PATH } from "@/lib/content";
 import { formatPrice, plural } from "@/lib/format";
 
 /** Bottom sheet on phones, side panel from md up. */
@@ -95,7 +95,7 @@ export default function CartDrawer() {
               {formatPrice(FREE_SHIPPING_CZK)}.
             </p>
             <Link
-              href={`/#${SECTIONS.shop}`}
+              href={SHOP_PATH}
               onClick={close}
               className={buttonClass({ size: "md", className: "mt-7" })}
             >

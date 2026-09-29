@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import CartDrawer from "@/components/cart/CartDrawer";
 import CartProvider from "@/components/cart/CartProvider";
+import AnnouncementBar from "@/components/layout/AnnouncementBar";
 import Footer from "@/components/layout/Footer";
 import MobileTabBar from "@/components/layout/MobileTabBar";
 import Navbar from "@/components/layout/Navbar";
@@ -50,6 +51,7 @@ export default function RootLayout({
           >
             Přeskočit na obsah
           </a>
+          <AnnouncementBar />
           <Navbar />
           <main id="obsah">{children}</main>
           <Footer />

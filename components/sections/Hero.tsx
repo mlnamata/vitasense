@@ -1,15 +1,20 @@
 import Link from "next/link";
-import { ArrowRight, BellRing, Check, Leaf, Smartphone, TrendingUp } from "lucide-react";
+import { ArrowRight, BellRing, Leaf, Smartphone, TrendingUp } from "lucide-react";
 import Packshot from "@/components/product/Packshot";
 import { buttonClass } from "@/components/ui/button";
 import Container from "@/components/ui/Container";
+import Stars from "@/components/ui/Stars";
 import { cn } from "@/lib/cn";
-import { HERO, SECTIONS } from "@/lib/content";
-import { getProductsBySlug } from "@/lib/data/products";
+import { HERO, SECTIONS, SHOP_PATH } from "@/lib/content";
+import { getProductsBySlug, getRatingSummary } from "@/lib/data/products";
+import { formatCount, formatRating } from "@/lib/format";
 import type { Product } from "@/lib/types";
 
 export default async function Hero() {
-  const products = await getProductsBySlug([...HERO.productSlugs]);
+  const [products, rating] = await Promise.all([
+    getProductsBySlug([...HERO.productSlugs]),
+    getRatingSummary(),
+  ]);
 
   return (
     <section id={SECTIONS.home} aria-labelledby="hero-title">
@@ -33,7 +38,7 @@ export default async function Hero() {
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <Link
-              href={`/#${SECTIONS.shop}`}
+              href={SHOP_PATH}
               className={buttonClass({ className: "group w-full sm:w-auto" })}
             >
               {HERO.primaryCta}
@@ -51,16 +56,13 @@ export default async function Hero() {
             </Link>
           </div>
 
-          <ul className="mt-10 flex flex-col gap-3 text-[15px] text-slate-600 sm:flex-row sm:flex-wrap sm:gap-x-6">
-            {HERO.highlights.map((item) => (
-              <li key={item} className="flex items-center gap-2.5">
-                <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-sage-100 text-sage-700">
-                  <Check className="size-3" strokeWidth={3} aria-hidden="true" />
-                </span>
-                {item}
-              </li>
-            ))}
-          </ul>
+          <div className="mt-10 flex items-center gap-3 text-[15px] text-slate-600">
+            <Stars value={rating.average} />
+            <p>
+              <strong className="font-bold text-slate-900">{formatRating(rating.average)}</strong> z 5
+              · {formatCount(rating.count)} hodnocení
+            </p>
+          </div>
         </div>
 
         <HeroVisual products={products} />

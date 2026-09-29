@@ -12,19 +12,37 @@ export const BRAND = {
 /** Orders at or above this amount ship free. */
 export const FREE_SHIPPING_CZK = 1500;
 
+export const SHOP_PATH = "/obchod";
+
 /** Landing-page sections, in page order. Ids double as anchors. */
 export const SECTIONS = {
   home: "uvod",
-  shop: "obchod",
+  goals: "cile",
+  bestsellers: "bestsellery",
+  reviews: "recenze",
   vision: "vize",
   ecosystem: "ekosystem",
+  magazine: "magazin",
   newsletter: "newsletter",
 } as const;
 
+/** `section` marks an anchor on the home page; the rest are routes. */
 export const NAV_LINKS = [
-  { label: "Obchod", section: SECTIONS.shop },
-  { label: "Naše vize", section: SECTIONS.vision },
-  { label: "Ekosystém", section: SECTIONS.ecosystem },
+  { label: "Obchod", href: SHOP_PATH, section: null },
+  { label: "Naše vize", href: `/#${SECTIONS.vision}`, section: SECTIONS.vision },
+  { label: "Ekosystém", href: `/#${SECTIONS.ecosystem}`, section: SECTIONS.ecosystem },
+] as const;
+
+export const ANNOUNCEMENT = "Doprava zdarma od 1 500 Kč · expedice do 24 hodin";
+
+/** Benefit ticker under the header. */
+export const USPS = [
+  { icon: "truck", text: "Doprava zdarma od 1 500 Kč" },
+  { icon: "package", text: "Expedice do 24 hodin" },
+  { icon: "flask", text: "Každá šarže laboratorně testovaná" },
+  { icon: "leaf", text: "Čisté složení bez plniv" },
+  { icon: "return", text: "30 dní na vrácení" },
+  { icon: "gift", text: "Vzorek zdarma k první objednávce" },
 ] as const;
 
 export const HERO = {
@@ -34,11 +52,6 @@ export const HERO = {
     "Prémiové doplňky stravy a chytrý ekosystém pro vaše tělo. Zjistěte, co vám chybí, a budujte zdravé návyky.",
   primaryCta: "Prozkoumat doplňky",
   secondaryCta: "Jak funguje aplikace?",
-  highlights: [
-    "Čisté suroviny bez plniv",
-    "Každá šarže laboratorně testovaná",
-    "Doprava zdarma od 1 500 Kč",
-  ],
   /** Packshots composed on the hero visual. */
   productSlugs: ["magnesium-complex", "vitamin-d3-k2"],
   reminder: {
@@ -54,11 +67,50 @@ export const HERO = {
   },
 } as const;
 
+export const GOALS = {
+  eyebrow: "Podle cíle",
+  title: "S čím vám pomůžeme?",
+} as const;
+
 export const BESTSELLERS = {
   eyebrow: "Bestsellery",
   title: "Začněte tím, co funguje.",
   subtitle:
     "Doplňky, po kterých naši zákazníci sahají nejčastěji. Poctivé dávky, čisté složení a nic navíc.",
+  link: "Všechny doplňky",
+} as const;
+
+export const REVIEWS = {
+  eyebrow: "Recenze",
+  title: "Co říkají naši zákazníci",
+  verified: "Ověřený nákup",
+} as const;
+
+export const PROMOS = {
+  subscription: {
+    eyebrow: "Předplatné",
+    title: "Předplatné plné výhod",
+    perks: [
+      "Sleva 15 % na každou zásilku",
+      "Doprava vždy zdarma",
+      "Změna, pauza nebo zrušení kdykoliv",
+      "Připomínka týden před odesláním",
+    ],
+    cta: "Jak předplatné funguje",
+    href: "/predplatne",
+    productSlugs: ["ashwagandha-ksm-66", "magnesium-complex", "omega-3-z-ras"],
+  },
+  test: {
+    eyebrow: "Domácí test",
+    title: "Nevíte, co vašemu tělu chybí?",
+    body: "Test z kapky krve změří klíčové vitaminy a minerály — od vitaminu D po železo. Výsledky máte do týdne v aplikaci.",
+    cta: "Jak test funguje",
+    results: [
+      { label: "Vitamin D", value: "38 ng/ml", level: 0.72, status: "v optimu" },
+      { label: "Železo", value: "9 µmol/l", level: 0.3, status: "nízké" },
+      { label: "Vitamin B12", value: "412 pmol/l", level: 0.86, status: "v optimu" },
+    ],
+  },
 } as const;
 
 export const VISION = {
@@ -118,6 +170,42 @@ export const ECOSYSTEM = {
   note: "Aplikace pro iOS a Android právě vzniká. Z čekací listiny se do ní dostanete jako první.",
 } as const;
 
+export const MAGAZINE = {
+  eyebrow: "VitaSense Magazín",
+  title: "Malé návyky, velký rozdíl.",
+  link: "Celý magazín",
+  href: "/magazin",
+  tips: [
+    {
+      tag: "Spánek",
+      tint: "#E8E6F1",
+      text: "Hodinu před spaním ztlumte světla a odložte telefon. Modré světlo z displeje oddaluje nástup melatoninu a s ním i usínání.",
+    },
+    {
+      tag: "Energie",
+      tint: "#F6EAD8",
+      text: "Ranní kávu si nechte na dobu hodinu až dvě po probuzení. Kofein vám pak vydrží déle a odpolední útlum nebude tak prudký.",
+    },
+    {
+      tag: "Výživa",
+      tint: "#E3EBDE",
+      text: "Vitaminy D a K2 berte s jídlem, které obsahuje tuk. Jsou v tucích rozpustné, takže nalačno se vstřebají jen zčásti.",
+    },
+    {
+      tag: "Pohyb",
+      tint: "#F4E6E2",
+      text: "Deset minut chůze po jídle pomáhá srovnat hladinu cukru v krvi. Nejvíc se to vyplatí hned po obědě.",
+    },
+  ],
+} as const;
+
+export const SHOP = {
+  title: "Obchod",
+  subtitle:
+    "Všechny doplňky VitaSense na jednom místě. Vyberte si podle cíle, nebo projděte celou nabídku.",
+  all: "Vše",
+} as const;
+
 export const NEWSLETTER = {
   title: "Zdravé návyky do e-mailu",
   body: "Jednou za dva týdny tipy od našich nutričních specialistů, novinky z vývoje aplikace a 10% sleva na první nákup.",
@@ -127,23 +215,16 @@ export const NEWSLETTER = {
 export const FOOTER = {
   tagline:
     "Prémiové doplňky stravy a chytrý ekosystém, který vám pomůže pochopit, co vaše tělo potřebuje.",
+  goalsTitle: "Podle cíle",
   columns: [
-    {
-      title: "Obchod",
-      links: [
-        { label: "Všechny doplňky", href: "/obchod" },
-        { label: "Bestsellery", href: `/#${SECTIONS.shop}` },
-        { label: "Domácí testy", href: "/testy" },
-        { label: "Dárkové poukazy", href: "/poukazy" },
-      ],
-    },
     {
       title: "VitaSense",
       links: [
+        { label: "Všechny doplňky", href: SHOP_PATH },
+        { label: "Předplatné", href: "/predplatne" },
         { label: "Naše vize", href: `/#${SECTIONS.vision}` },
         { label: "Ekosystém", href: `/#${SECTIONS.ecosystem}` },
-        { label: "Pro odborníky", href: "/odbornici" },
-        { label: "Kontakt", href: "/kontakt" },
+        { label: "Magazín", href: "/magazin" },
       ],
     },
     {
@@ -153,6 +234,7 @@ export const FOOTER = {
         { label: "Ochrana osobních údajů", href: "/ochrana-osobnich-udaju" },
         { label: "Doprava a platba", href: "/doprava-a-platba" },
         { label: "Reklamace a vrácení", href: "/reklamace" },
+        { label: "Kontakt", href: "/kontakt" },
       ],
     },
   ],

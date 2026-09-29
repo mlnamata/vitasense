@@ -14,13 +14,16 @@ export type CategoryId =
 export type Category = {
   id: CategoryId;
   label: string;
+  /** Goal-oriented line for tiles and the category page header. */
+  description: string;
   /** Pastel background behind the packshot. */
   tint: string;
   /** Cap / accent colour of the packaging. */
   accent: string;
 };
 
-export type ProductFormat = "capsules" | "drops";
+/** Drops ship in a dropper bottle; everything else in a jar. */
+export type ProductFormat = "capsules" | "drops" | "powder";
 
 export type Product = {
   id: string;
@@ -33,11 +36,31 @@ export type Product = {
   /** Pack size as printed on the label, e.g. „60 kapslí". */
   unit: string;
   priceCzk: number;
+  /** Price before discount; null when the product isn't on sale. */
+  compareAtPriceCzk: number | null;
+  /** Short marketing label on the image, e.g. „Novinka". */
+  badge: string | null;
   /** Supabase Storage URL; null falls back to the drawn packshot. */
   imageUrl: string | null;
   rating: number;
   reviewCount: number;
   isBestseller: boolean;
+};
+
+export type Review = {
+  id: string;
+  author: string;
+  rating: number;
+  /** ISO date. */
+  date: string;
+  productName: string;
+  text: string;
+  verified: boolean;
+};
+
+export type RatingSummary = {
+  average: number;
+  count: number;
 };
 
 export type CartLine = {

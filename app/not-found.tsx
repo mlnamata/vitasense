@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Sprout } from "lucide-react";
 import { buttonClass } from "@/components/ui/button";
 import Container from "@/components/ui/Container";
-import { SECTIONS } from "@/lib/content";
+import { SHOP_PATH } from "@/lib/content";
 
 /* Doubles as the placeholder for pages that are still being built. */
 export default function NotFound() {
@@ -23,7 +23,7 @@ export default function NotFound() {
           oblíbili nejvíc.
         </p>
         <div className="mt-9 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-          <Link href={`/#${SECTIONS.shop}`} className={buttonClass()}>
+          <Link href={SHOP_PATH} className={buttonClass()}>
             Prozkoumat doplňky
           </Link>
           <Link href="/" className={buttonClass({ variant: "secondary" })}>
