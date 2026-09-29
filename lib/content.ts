@@ -52,8 +52,10 @@ export const HERO = {
     "Prémiové doplňky stravy a chytrý ekosystém pro vaše tělo. Zjistěte, co vám chybí, a budujte zdravé návyky.",
   primaryCta: "Prozkoumat doplňky",
   secondaryCta: "Jak funguje aplikace?",
-  /** Packshots composed on the hero visual. */
-  productSlugs: ["magnesium-complex", "vitamin-d3-k2"],
+  image: {
+    src: "/images/hero.png",
+    alt: "Magnesium Complex a Vitamin D3 + K2 na kamenném podstavci s kapslemi",
+  },
   reminder: {
     app: "VitaSense",
     time: "teď",

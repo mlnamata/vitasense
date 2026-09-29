@@ -1,20 +1,15 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, BellRing, Leaf, Smartphone, TrendingUp } from "lucide-react";
-import Packshot from "@/components/product/Packshot";
 import { buttonClass } from "@/components/ui/button";
 import Container from "@/components/ui/Container";
 import Stars from "@/components/ui/Stars";
-import { cn } from "@/lib/cn";
 import { HERO, SECTIONS, SHOP_PATH } from "@/lib/content";
-import { getProductsBySlug, getRatingSummary } from "@/lib/data/products";
+import { getRatingSummary } from "@/lib/data/products";
 import { formatCount, formatRating } from "@/lib/format";
-import type { Product } from "@/lib/types";
 
 export default async function Hero() {
-  const [products, rating] = await Promise.all([
-    getProductsBySlug([...HERO.productSlugs]),
-    getRatingSummary(),
-  ]);
+  const rating = await getRatingSummary();
 
   return (
     <section id={SECTIONS.home} aria-labelledby="hero-title">
@@ -65,19 +60,18 @@ export default async function Hero() {
           </div>
         </div>
 
-        <HeroVisual products={products} />
+        <HeroVisual />
       </Container>
     </section>
   );
 }
 
 /*
- * Product still-life on an organic backdrop. When the brand shoot exists,
- * swap the packshots for a single next/image and keep the blob behind it.
+ * Product still life (transparent PNG from `npm run images`) on an organic
+ * backdrop. A brand photo can replace the file 1:1; keep it transparent or
+ * drop the blob.
  */
-function HeroVisual({ products }: { products: Product[] }) {
-  const [main, side] = products;
-
+function HeroVisual() {
   return (
     <div className="relative mx-auto aspect-square w-full max-w-[560px]">
       <div
@@ -93,15 +87,17 @@ function HeroVisual({ products }: { products: Product[] }) {
         className="absolute inset-[20%] rounded-full bg-white/50 blur-3xl"
       />
 
-      {/* Left-weighted below lg so the metric card never covers a label. */}
-      <div className="absolute inset-x-0 bottom-[17%] flex items-end justify-start pl-[9%] lg:justify-center lg:pl-0">
-        {main && <Packshot product={main} className="w-[36%]" />}
-        {side && <Packshot product={side} className="-ml-[4%] w-[21%]" />}
-      </div>
-
-      <Capsule className="bottom-[13%] left-[17%] w-[11%] -rotate-[24deg]" />
-      <Capsule className="bottom-[9%] left-[29%] w-[9%] rotate-[12deg]" />
-      <Capsule className="bottom-[11%] right-[20%] w-[10%] rotate-[34deg]" />
+      {/* The composition sits left of centre so the metric card has room. */}
+      <Image
+        src={HERO.image.src}
+        alt={HERO.image.alt}
+        width={1200}
+        height={1200}
+        loading="eager"
+        fetchPriority="high"
+        sizes="(min-width: 1024px) 560px, 100vw"
+        className="absolute inset-0 size-full object-contain"
+      />
 
       <div className="absolute left-0 top-[9%] w-[64%] animate-float sm:w-auto sm:max-w-[290px] lg:-left-[6%]">
         <div className="flex items-start gap-3 rounded-2xl bg-white/85 p-3 pr-4 shadow-lift ring-1 ring-slate-900/5 backdrop-blur-md sm:p-4 sm:pr-5">
@@ -150,18 +146,3 @@ function HeroVisual({ products }: { products: Product[] }) {
   );
 }
 
-function Capsule({ className }: { className?: string }) {
-  return (
-    <span
-      aria-hidden="true"
-      className={cn(
-        "absolute aspect-[2.4/1] rounded-full shadow-[0_6px_12px_-6px_rgb(30_41_59/0.45)]",
-        className
-      )}
-      style={{
-        background:
-          "linear-gradient(180deg, rgb(255 255 255 / 0.45), transparent 45%), linear-gradient(90deg, var(--color-sage-600) 0 50%, #EFEBE3 50% 100%)",
-      }}
-    />
-  );
-}

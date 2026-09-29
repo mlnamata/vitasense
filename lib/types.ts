@@ -40,7 +40,7 @@ export type Product = {
   compareAtPriceCzk: number | null;
   /** Short marketing label on the image, e.g. „Novinka". */
   badge: string | null;
-  /** Supabase Storage URL; null falls back to the drawn packshot. */
+  /** Local path or Supabase Storage URL; null falls back to the drawn packshot. */
   imageUrl: string | null;
   rating: number;
   reviewCount: number;

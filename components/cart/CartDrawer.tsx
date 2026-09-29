@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { Minus, Plus, ShoppingBag, Trash2, Truck, X } from "lucide-react";
 import { useCart } from "@/components/cart/CartProvider";
-import Packshot from "@/components/product/Packshot";
+import ProductThumb from "@/components/product/ProductThumb";
 import { buttonClass } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
 import { FREE_SHIPPING_CZK, SHOP_PATH } from "@/lib/content";
@@ -127,16 +127,7 @@ export default function CartDrawer() {
             <ul className="mt-2 flex-1 divide-y divide-slate-900/[0.06] overflow-y-auto overscroll-contain px-5 md:px-7">
               {lines.map(({ product, quantity }) => (
                 <li key={product.id} className="flex gap-4 py-4">
-                  <div
-                    className="flex size-20 shrink-0 items-center justify-center rounded-xl pt-2"
-                    style={{ backgroundColor: product.category.tint }}
-                  >
-                    <Packshot
-                      product={product}
-                      showLabel={false}
-                      className={product.format === "drops" ? "w-[26%]" : "w-[40%]"}
-                    />
-                  </div>
+                  <ProductThumb product={product} className="size-20" />
 
                   <div className="flex min-w-0 flex-1 flex-col">
                     <div className="flex items-start justify-between gap-2">

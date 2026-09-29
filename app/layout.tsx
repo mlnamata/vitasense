@@ -18,7 +18,11 @@ const jakarta = Plus_Jakarta_Sans({
 
 const title = `${BRAND.name} — Zdraví, které dává smysl`;
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+
 export const metadata: Metadata = {
+  /* Absolute URLs for the social preview; on Vercel Next falls back to the deployment URL. */
+  metadataBase: siteUrl ? new URL(siteUrl) : undefined,
   title: { default: title, template: `%s | ${BRAND.name}` },
   description: HERO.subtitle,
   applicationName: BRAND.name,
