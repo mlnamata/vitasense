@@ -9,6 +9,21 @@ export const BRAND = {
   email: "ahoj@vitasense.cz",
 } as const;
 
+/*
+ * Legal identity used in the terms, privacy policy and contact page.
+ * Placeholders in brackets must be filled in before launch.
+ */
+export const COMPANY = {
+  name: BRAND.company,
+  ico: "[doplňte IČO]",
+  dic: "[doplňte DIČ]",
+  address: "[ulice a číslo], [PSČ a město]",
+  register: "[spisová značka, rejstříkový soud]",
+  email: BRAND.email,
+  phone: "[doplňte telefon]",
+  hours: "Po–Pá 9:00–16:00",
+} as const;
+
 /** Orders at or above this amount ship free. */
 export const FREE_SHIPPING_CZK = 1500;
 
@@ -182,28 +197,10 @@ export const MAGAZINE = {
   title: "Malé návyky, velký rozdíl.",
   link: "Celý magazín",
   href: "/magazin",
-  tips: [
-    {
-      tag: "Spánek",
-      tint: "#E8E6F1",
-      text: "Hodinu před spaním ztlumte světla a odložte telefon. Modré světlo z displeje oddaluje nástup melatoninu a s ním i usínání.",
-    },
-    {
-      tag: "Energie",
-      tint: "#F6EAD8",
-      text: "Ranní kávu si nechte na dobu hodinu až dvě po probuzení. Kofein vám pak vydrží déle a odpolední útlum nebude tak prudký.",
-    },
-    {
-      tag: "Výživa",
-      tint: "#E3EBDE",
-      text: "Vitaminy D a K2 berte s jídlem, které obsahuje tuk. Jsou v tucích rozpustné, takže nalačno se vstřebají jen zčásti.",
-    },
-    {
-      tag: "Pohyb",
-      tint: "#F4E6E2",
-      text: "Deset minut chůze po jídle pomáhá srovnat hladinu cukru v krvi. Nejvíc se to vyplatí hned po obědě.",
-    },
-  ],
+  intro:
+    "Krátké a srozumitelné tipy, jak spát lépe, mít víc energie a jak z doplňků dostat maximum.",
+  readMore: "Číst článek",
+  minutes: "min čtení",
 } as const;
 
 export const SHOP = {
@@ -286,6 +283,71 @@ export const CHECKOUT = {
     account: "000000000/0000",
     iban: "CZ00 0000 0000 0000 0000 0000",
   },
+} as const;
+
+export const SUBSCRIPTION_PAGE = {
+  eyebrow: "Předplatné",
+  title: "Doplňky, které přijdou samy.",
+  subtitle:
+    "Nastavte si interval a zapomeňte na to, že vám dochází hořčík. Každou zásilku dostanete o 15 % levněji a s dopravou zdarma.",
+  cta: "Vybrat doplňky",
+  steps: [
+    { title: "Vyberte doplňky", body: "Jakékoli produkty z nabídky, klidně každý v jiném množství." },
+    { title: "Zvolte interval", body: "Každých 30, 60 nebo 90 dní — podle toho, jak rychle je spotřebujete." },
+    { title: "Zbytek je na nás", body: "Týden před odesláním vám připomeneme, co přijde. Můžete cokoli změnit." },
+  ],
+  intervals: [30, 60, 90],
+  exampleTitle: "Kolik ušetříte",
+  exampleSlugs: ["magnesium-complex", "vitamin-d3-k2"],
+  faq: [
+    {
+      q: "Můžu předplatné kdykoli zrušit?",
+      a: "Ano. Předplatné zrušíte nebo pozastavíte jedním kliknutím ve svém účtu, nejpozději 3 dny před odesláním další zásilky. Žádné sankce ani minimální doba.",
+    },
+    {
+      q: "Jak se platí?",
+      a: "Kartou. Platbu strhneme až v den odeslání zásilky, nikdy dopředu.",
+    },
+    {
+      q: "Můžu změnit produkty nebo interval?",
+      a: "Kdykoli. Přidejte nový produkt, změňte množství nebo posuňte datum další zásilky.",
+    },
+    {
+      q: "Sčítá se sleva s jinými akcemi?",
+      a: "Sleva 15 % platí vždy z běžné ceny. U produktů v akci použijeme tu výhodnější z obou cen.",
+    },
+  ],
+} as const;
+
+export const CONTACT_PAGE = {
+  title: "Jsme tu pro vás",
+  subtitle:
+    "Máte dotaz k objednávce, produktům nebo spolupráci? Napište nám, odpovídáme obvykle do jednoho pracovního dne.",
+  subjects: ["Objednávka a doprava", "Produkty a dávkování", "Předplatné", "Spolupráce", "Jiné"],
+  success: "Díky za zprávu! Ozveme se vám do jednoho pracovního dne.",
+  company: "Fakturační údaje",
+  helpTitle: "Rychlé odpovědi",
+} as const;
+
+export const ACCOUNT = {
+  title: "Můj účet",
+  demo: "Ukázkový účet — data jsou smyšlená. Po napojení přihlášení se tu zobrazí skutečné objednávky.",
+  greeting: "Dobrý den",
+  orders: "Moje objednávky",
+  subscription: "Moje předplatné",
+  nextDelivery: "Další zásilka",
+  interval: "Interval",
+  manage: "Upravit předplatné",
+  details: "Osobní údaje",
+  logout: "Odhlásit se",
+} as const;
+
+export const ORDER_STATUS_LABELS = {
+  nova: "Nová",
+  zaplacena: "Zaplacená",
+  odeslana: "Odeslaná",
+  dorucena: "Doručená",
+  zrusena: "Zrušená",
 } as const;
 
 export const NEWSLETTER = {

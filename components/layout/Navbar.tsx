@@ -8,7 +8,7 @@ import Container from "@/components/ui/Container";
 import Logo from "@/components/ui/Logo";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { useScrolled } from "@/hooks/useScrolled";
-import { cn } from "@/lib/cn";
+import { cn, isActivePath } from "@/lib/cn";
 import { NAV_LINKS } from "@/lib/content";
 
 const SECTION_IDS = NAV_LINKS.flatMap((link) => (link.section ? [link.section] : []));
@@ -39,7 +39,7 @@ export default function Navbar() {
             {NAV_LINKS.map((link) => {
               const isActive = link.section
                 ? active === link.section
-                : pathname.startsWith(link.href);
+                : isActivePath(pathname, link.href);
               return (
                 <li key={link.label}>
                   <Link

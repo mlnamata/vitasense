@@ -68,6 +68,21 @@ export type ProductDetails = {
 
 export type ProductWithDetails = Product & { details: ProductDetails };
 
+export type Article = {
+  slug: string;
+  title: string;
+  tag: string;
+  /** Card background. */
+  tint: string;
+  /** ISO date. */
+  date: string;
+  readingMinutes: number;
+  /** One-paragraph takeaway shown on the home page card. */
+  tip: string;
+  excerpt: string;
+  sections: { heading: string; paragraphs: string[] }[];
+};
+
 export type Review = {
   id: string;
   author: string;
@@ -82,6 +97,46 @@ export type Review = {
 export type RatingSummary = {
   average: number;
   count: number;
+};
+
+export type OrderStatus = "nova" | "zaplacena" | "odeslana" | "dorucena" | "zrusena";
+
+export type OrderItem = {
+  slug: string;
+  name: string;
+  quantity: number;
+  priceCzk: number;
+};
+
+export type Customer = {
+  name: string;
+  email: string;
+  phone: string;
+  street: string;
+  city: string;
+  zip: string;
+};
+
+export type Order = {
+  number: string;
+  /** ISO date-time. */
+  createdAt: string;
+  customer: Customer;
+  items: OrderItem[];
+  shipping: "zasilkovna" | "ppl";
+  payment: "karta" | "prevod" | "dobirka";
+  shippingCzk: number;
+  paymentCzk: number;
+  totalCzk: number;
+  status: OrderStatus;
+  note?: string;
+};
+
+export type Subscriber = {
+  email: string;
+  /** ISO date. */
+  subscribedAt: string;
+  source: "web" | "pokladna" | "aplikace";
 };
 
 export type CartLine = {

@@ -66,7 +66,7 @@ export default function CheckoutForm() {
   );
 
   return (
-    <form action={formAction} noValidate className="grid gap-8 lg:grid-cols-[1fr_24rem] lg:gap-12">
+    <form action={formAction} noValidate className="grid grid-cols-[minmax(0,1fr)] gap-8 lg:grid-cols-[minmax(0,1fr)_24rem] lg:gap-12">
       <input type="hidden" name="items" value={items} />
 
       <div className="space-y-6">

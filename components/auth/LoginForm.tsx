@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import Link from "next/link";
 import { ArrowRight, LoaderCircle, MailCheck } from "lucide-react";
 import { requestMagicLink } from "@/app/actions/auth";
 import { buttonClass } from "@/components/ui/button";
@@ -21,6 +22,10 @@ export default function LoginForm() {
           Na adresu <strong className="font-semibold text-slate-900">{state.message}</strong> jsme
           poslali přihlašovací odkaz. Platí 60 minut.
         </p>
+        {/* Demo only: remove once Supabase auth sends real links. */}
+        <Link href="/ucet" className="mt-4 inline-flex text-sm font-semibold text-sage-700 underline underline-offset-4">
+          Zobrazit ukázkový účet
+        </Link>
       </div>
     );
   }
