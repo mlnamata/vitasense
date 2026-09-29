@@ -241,6 +241,53 @@ export const PRODUCT_PAGE = {
   ],
 } as const;
 
+export const CHECKOUT = {
+  title: "Pokladna",
+  empty: "Košík je prázdný",
+  emptyBody: "Než budete moct objednat, vyberte si něco z naší nabídky.",
+  sections: {
+    contact: "Kontakt",
+    address: "Doručovací a fakturační adresa",
+    shipping: "Doprava",
+    payment: "Platba",
+    note: "Poznámka k objednávce",
+  },
+  summary: "Souhrn objednávky",
+  subtotal: "Mezisoučet",
+  shipping: "Doprava",
+  paymentFee: "Platba",
+  total: "Celkem k úhradě",
+  free: "Zdarma",
+  terms: {
+    before: "Souhlasím s ",
+    link: "obchodními podmínkami",
+    after: " a beru na vědomí zpracování osobních údajů.",
+  },
+  newsletter: "Chci dostávat tipy a novinky e-mailem (můžete kdykoliv zrušit).",
+  submit: "Objednat s povinností platby",
+  secure: "Zabezpečené spojení · data neukládáme u třetích stran",
+  vat: "Ceny jsou uvedeny včetně DPH.",
+  thanks: {
+    title: "Děkujeme za objednávku!",
+    body: "Potvrzení s přehledem objednávky vám právě odchází na e-mail.",
+    number: "Číslo objednávky",
+    steps: [
+      { title: "Potvrzení e-mailem", body: "Do pár minut vám přijde souhrn objednávky." },
+      { title: "Expedice do 24 hodin", body: "V pracovní dny balíme ještě ten den." },
+      { title: "Sledování zásilky", body: "Jakmile balík předáme dopravci, pošleme odkaz na sledování." },
+    ],
+    card: "Platbu kartou dokončíte na zabezpečené platební bráně.",
+    transfer: "Pro rychlé odeslání zaplaťte převodem nebo QR kódem:",
+    cod: "Zaplatíte při převzetí zásilky.",
+    continue: "Pokračovat v nákupu",
+  },
+  /* Placeholder — fill in the real account before launch. */
+  bank: {
+    account: "000000000/0000",
+    iban: "CZ00 0000 0000 0000 0000 0000",
+  },
+} as const;
+
 export const NEWSLETTER = {
   title: "Zdravé návyky do e-mailu",
   body: "Jednou za dva týdny tipy od našich nutričních specialistů, novinky z vývoje aplikace a 10% sleva na první nákup.",

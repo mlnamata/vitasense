@@ -95,4 +95,6 @@ export type FormState = {
   message: string;
   /** Submitted values, echoed back so the form keeps them after an error. */
   values?: Record<string, string>;
+  /** Field name → message, for inline validation. */
+  errors?: Record<string, string>;
 };
